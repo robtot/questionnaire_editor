@@ -5,16 +5,10 @@ const questions = (state = [], action) => {
         ...state,
         {
           id: action.id,
-          text: action.text,
-          completed: false
+          text: action.question.text,
+          type: action.question.type
         }
       ]
-    case 'TOGGLE_QUESTION':
-      return state.map(question =>
-        (question.id === action.id) 
-          ? {...question, completed: !question.completed}
-          : question
-      )
     default:
       return state
   }

@@ -3,7 +3,7 @@ import AddQuestion from '../containers/AddQuestion'
 import VisibleQuestionList from '../containers/VisibleQuestionList'
 
 const App = () => (
-  <div>
+  <div className="container">
     <AddQuestion />
     <VisibleQuestionList />
   </div>

@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { toggleQuestion } from '../actions'
 import QuestionList from '../components/QuestionList'
 
 const getVisibleQuestions = (questions) => {
@@ -15,7 +14,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onQuestionClick: id => {
-      dispatch(toggleQuestion(id))
+      // dispatch(toggleQuestion(id))
     }
   }
 }
