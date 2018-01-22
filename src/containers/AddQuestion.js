@@ -30,7 +30,7 @@ let AddQuestion = ({ dispatch }) => {
           />
         </div>
       </div>
-      <div className="form-row justify-content-between">
+      <div className="form-row justify-content-center">
         <div className="col-auto">
           <select
             name="question-type"
