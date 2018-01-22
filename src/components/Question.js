@@ -23,11 +23,8 @@ function OptionsList(props) {
 
 }
 
-const Question = ({ onClick, onQuestionDeleteClick, text, type, options }) => (
-  <div
-    className="card"
-    onClick={onClick}
-  >
+const Question = ({ onQuestionDeleteClick, text, type, options }) => (
+  <div className="card">
     <div className="card-body">
       <div className="row">
         <div className="col-8">
@@ -53,11 +50,11 @@ const Question = ({ onClick, onQuestionDeleteClick, text, type, options }) => (
 )
 
 Question.propTypes = {
-  onClick: PropTypes.func.isRequired,
   onQuestionDeleteClick: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  options: PropTypes.array
+  options: PropTypes.array,
+  rank: PropTypes.number
 }
 
 export default Question

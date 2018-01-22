@@ -1,12 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Question from './Question'
+import DragSortableList from 'react-drag-sortable'
+import './QuestionList.css'
 
-const QuestionList = ({ questions, onQuestionClick, onQuestionDeleteClick }) => (
+function getQuestionsElemList(questions, onQuestionDeleteClick) {
+  let list = questions.map(question => (
+    {content: <Question key={question.id} {...question} onQuestionDeleteClick={() => onQuestionDeleteClick(question.id)}/>}
+  ))
+
+  return list
+}
+
+const QuestionList = ({ questions, onQuestionDeleteClick, onQuestionSort }) => (
   <div>
-    {questions.map(question => (
-      <Question key={question.id} {...question} onClick={() => onQuestionClick(question.id)} onQuestionDeleteClick={() => onQuestionDeleteClick(question.id)}/>
-    ))}
+    <DragSortableList 
+      items={getQuestionsElemList(questions, onQuestionDeleteClick)}
+      moveTransitionDuration={0.3}
+      onSort={onQuestionSort}
+      type="vertical"
+    />
   </div>
 )
 
@@ -18,8 +31,8 @@ QuestionList.propTypes = {
       type: PropTypes.string.isRequired
     }).isRequired
   ).isRequired,
-  onQuestionClick: PropTypes.func.isRequired,
-  onQuestionDeleteClick: PropTypes.func.isRequired
+  onQuestionDeleteClick: PropTypes.func.isRequired,
+  onQuestionSort: PropTypes.func.isRequired
 }
 
 export default QuestionList

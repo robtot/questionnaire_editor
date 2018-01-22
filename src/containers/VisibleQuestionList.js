@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import QuestionList from '../components/QuestionList'
-import { deleteQuestion } from '../actions'
+import { deleteQuestion, sortQuestions } from '../actions'
 
 const getVisibleQuestions = (questions) => {
   return questions
@@ -14,11 +14,19 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onQuestionClick: id => {
-      // dispatch(toggleQuestion(id))
-    },
     onQuestionDeleteClick: id => {
       dispatch(deleteQuestion(id))
+    },
+    onQuestionSort: sortedList => {
+      const mappedSortedList = sortedList.map(function(item) {
+        return {
+          id: item.content.key,
+          rank: item.rank
+        }
+
+      })
+      
+      dispatch(sortQuestions(mappedSortedList))
     }
 
   }

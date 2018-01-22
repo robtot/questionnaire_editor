@@ -39,9 +39,9 @@ let AddQuestion = ({ dispatch }) => {
               questionType = node
             }}
           >
-            <option value="text">text answer</option>
-            <option value="radio">radio buttons answer</option>
-            <option value="checkbox">checkbox buttons answer</option>
+            <option value="text">Text</option>
+            <option value="radio">Radio</option>
+            <option value="checkbox">Checkbox</option>
           </select>
         </div>
         <div className="col-auto">

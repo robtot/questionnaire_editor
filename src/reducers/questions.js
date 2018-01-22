@@ -25,6 +25,13 @@ const questions = (state = [], action) => {
       }
     case 'DELETE_QUESTION':
       return state.filter(question => question.id !== action.id)
+    case 'SORT_QUESTIONS':
+      action.questionOrder.forEach(function(questionOrder) {
+        let questionIndex = state.findIndex((question) => question.id === parseInt(questionOrder.id, 10))
+        state[questionIndex].rank = questionOrder.rank
+      })
+
+      return state
     default:
       return state
   }

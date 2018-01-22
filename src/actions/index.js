@@ -15,3 +15,11 @@ export const deleteQuestion = id => {
   }
 
 }
+
+export const sortQuestions = questionOrder => {
+  return {
+    type: 'SORT_QUESTIONS',
+    questionOrder: questionOrder
+  }
+
+}
