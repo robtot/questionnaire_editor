@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Question from './Question'
 
-const QuestionList = ({ questions, onQuestionClick }) => (
+const QuestionList = ({ questions, onQuestionClick, onQuestionDeleteClick }) => (
   <div>
     {questions.map(question => (
-      <Question key={question.id} {...question} onClick={() => onQuestionClick(question.id)} />
+      <Question key={question.id} {...question} onClick={() => onQuestionClick(question.id)} onQuestionDeleteClick={() => onQuestionDeleteClick(question.id)}/>
     ))}
   </div>
 )
@@ -18,7 +18,8 @@ QuestionList.propTypes = {
       type: PropTypes.string.isRequired
     }).isRequired
   ).isRequired,
-  onQuestionClick: PropTypes.func.isRequired
+  onQuestionClick: PropTypes.func.isRequired,
+  onQuestionDeleteClick: PropTypes.func.isRequired
 }
 
 export default QuestionList

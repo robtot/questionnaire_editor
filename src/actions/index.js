@@ -5,4 +5,13 @@ export const addQuestion = question => {
     id: nextQuestionId++,
     question
   }
+  
+}
+
+export const deleteQuestion = id => {
+  return {
+    type: 'DELETE_QUESTION',
+    id
+  }
+
 }

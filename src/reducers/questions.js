@@ -23,7 +23,8 @@ const questions = (state = [], action) => {
         ]
 
       }
-
+    case 'DELETE_QUESTION':
+      return state.filter(question => question.id !== action.id)
     default:
       return state
   }
