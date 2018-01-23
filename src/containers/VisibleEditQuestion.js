@@ -13,6 +13,9 @@ const mapDispatchToProps = dispatch => {
   return {
     cancelQuestionEdit: () => {
       dispatch(cancelQuestionEdit())
+    },
+    saveQuestion: question => {
+      dispatch(editQuestion(question))
     }
   }
 

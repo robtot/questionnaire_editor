@@ -26,12 +26,24 @@ const questions = (state = [], action) => {
     case 'DELETE_QUESTION':
       return state.filter(question => question.id !== action.id)
     case 'SORT_QUESTIONS':
-      action.questionOrder.forEach(function(questionOrder) {
-        let questionIndex = state.findIndex((question) => question.id === questionOrder.id)
-        state[questionIndex].rank = questionOrder.rank
+      return state.map(question => {
+        let order = action.questionOrder.filter(order => order.id === question.id)[0]
+        return Object.assign({}, question, order)
+      }).sort(function(a,b) {
+        if (a['rank'] < b['rank']) return -1;
+        if (a['rank'] > b['rank']) return 1;
+        return 0
       })
 
-      return state
+    case 'EDIT_QUESTION':
+      return state.map((question, index) => {
+        if (question.id === action.question.id) {
+          return Object.assign({}, question, action.question)
+        } else {
+          return question
+        }
+
+      })
     default:
       return state
   }
