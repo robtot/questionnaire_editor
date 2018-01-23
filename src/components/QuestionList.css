@@ -1,3 +1,7 @@
 .placeholder {
 	opacity: 0.33;
 }
+
+.dragged {
+	width: 100%;
+}

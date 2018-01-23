@@ -13,13 +13,15 @@ function getQuestionsElemList(questions, onQuestionDeleteClick, onStartQuestionE
 }
 
 const QuestionList = ({ questions, onQuestionDeleteClick, onQuestionSort, onStartQuestionEdit }) => (
-  <div>
-    <DragSortableList 
-      items={getQuestionsElemList(questions, onQuestionDeleteClick, onStartQuestionEdit)}
-      moveTransitionDuration={0.3}
-      onSort={onQuestionSort}
-      type="vertical"
-    />
+  <div className="row">
+    <div className="col">
+      <DragSortableList 
+        items={getQuestionsElemList(questions, onQuestionDeleteClick, onStartQuestionEdit)}
+        moveTransitionDuration={0.3}
+        onSort={onQuestionSort}
+        type="vertical"
+      />
+    </div>
   </div>
 )
 

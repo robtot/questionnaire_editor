@@ -6,6 +6,28 @@ function overlayOff() {
   document.getElementById("overlay").style.display = "none";
 }
 
+function QuestionOptionsFields(props) {
+  const type = props.questionInEdit.type
+  const options = props.questionInEdit.options
+  if (type === 'radio' || type === 'checkbox') {  
+    const optList = options.map(function(option) {
+      return (
+        <li key={option} className="list-group-item">
+          <div className="form-check">
+            <input className="form-check-input" type={type} disabled />
+            <textarea type="text" className="question-option-field form-control" defaultValue={option} placeholder="Option description" />
+          </div>
+        </li>
+      )
+    })
+
+    return <ul className="list-group col">{optList}</ul>
+  } else {
+    return null
+  }
+
+}
+
 function QuestionFormIfVisible(props) {
   const questionInEdit = props.questionInEdit
   const saveQuestion = props.saveQuestion
@@ -19,7 +41,15 @@ function QuestionFormIfVisible(props) {
             return
           }
 
-          saveQuestion({ id: props.questionInEdit.id, text: questionText.value})
+          let options
+          if (questionInEdit.type === 'radio' || questionInEdit.type === 'checkbox' ) {
+            let optionElems = [].slice.call(document.getElementsByClassName('question-option-field'))
+            options = optionElems.map(function(elem) { return elem.value })
+          } else {
+            options = null
+          }
+
+          saveQuestion({ id: questionInEdit.id, text: questionText.value, options: options})
         }}>
           <div className="card-body">
             <div className="form-row">
@@ -42,6 +72,9 @@ function QuestionFormIfVisible(props) {
                   defaultValue={questionInEdit.text}
                 />
               </div>
+            </div>
+            <div className="form-row">
+              <QuestionOptionsFields questionInEdit={questionInEdit} />
             </div>
             <div className="form-row">
               <div className="col">

@@ -7,8 +7,8 @@ const App = () => (
   <div>
     <VisibleEditQuestion />
     <div className="container">
-      <AddQuestion />
       <VisibleQuestionList />
+      <AddQuestion />
     </div>
   </div>
 )

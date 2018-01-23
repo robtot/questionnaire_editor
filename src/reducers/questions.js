@@ -18,7 +18,8 @@ const questions = (state = [], action) => {
           {
             id: action.id,
             text: action.question.text,
-            type: action.question.type
+            type: action.question.type,
+            options: null
           }
         ]
 
