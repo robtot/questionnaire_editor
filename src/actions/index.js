@@ -46,3 +46,10 @@ export const cancelQuestionEdit = () => {
   }
   
 }
+
+export const addOptionQuestionInEdit = () => {
+  return {
+    type: 'ADD_OPTION_QUESTION_IN_EDIT'
+  }
+  
+}

@@ -9,6 +9,7 @@ function overlayOff() {
 function QuestionOptionsFields(props) {
   const type = props.questionInEdit.type
   const options = props.questionInEdit.options
+  const addOption = props.addOption
   if (type === 'radio' || type === 'checkbox') {  
     const optList = options.map(function(option) {
       return (
@@ -21,7 +22,16 @@ function QuestionOptionsFields(props) {
       )
     })
 
-    return <ul className="list-group col">{optList}</ul>
+    return (
+      <div>
+        <div className="form-row">
+          <ul className="list-group col">{optList}</ul>
+        </div>
+        <div className="form-row">
+          <button type="button" className="btn btn-secondary" onClick={addOption}>Add option</button>
+        </div>
+      </div>
+    )
   } else {
     return null
   }
@@ -31,10 +41,11 @@ function QuestionOptionsFields(props) {
 function QuestionFormIfVisible(props) {
   const questionInEdit = props.questionInEdit
   const saveQuestion = props.saveQuestion
+  const addOption = props.addOption
   let questionText
   if (questionInEdit !== null) {
     return (
-      <div className="card">
+      <div className="card" onClick={function(e) {e.stopPropagation()}}>
         <form onSubmit={e => {
           e.preventDefault()
           if (!questionText.value.trim()) {
@@ -73,9 +84,7 @@ function QuestionFormIfVisible(props) {
                 />
               </div>
             </div>
-            <div className="form-row">
-              <QuestionOptionsFields questionInEdit={questionInEdit} />
-            </div>
+            <QuestionOptionsFields questionInEdit={questionInEdit} addOption={addOption} />
             <div className="form-row">
               <div className="col">
                 <button type="submit" className="btn btn-primary">
@@ -93,10 +102,10 @@ function QuestionFormIfVisible(props) {
 
 }
 
-const EditQuestion = ({questionInEdit, cancelQuestionEdit, saveQuestion}) => (
+const EditQuestion = ({questionInEdit, cancelQuestionEdit, saveQuestion, addOption}) => (
   <div id="overlay" className="overlay" style={{display: (questionInEdit !== null) ? 'block' : 'none'}} onClick={function() {overlayOff(); cancelQuestionEdit();}}>
-    <div id="overlay-content" className="overlay-content container d-flex align-items-center" onClick={function(e) {e.stopPropagation()}}>
-      <QuestionFormIfVisible questionInEdit={questionInEdit} saveQuestion={saveQuestion} />
+    <div id="overlay-content" className="overlay-content container d-flex align-items-center">
+      <QuestionFormIfVisible questionInEdit={questionInEdit} saveQuestion={saveQuestion} addOption={addOption} />
     </div>
   </div>
 )
@@ -104,7 +113,8 @@ const EditQuestion = ({questionInEdit, cancelQuestionEdit, saveQuestion}) => (
 EditQuestion.propTypes = {
   questionInEdit: PropTypes.object,
   cancelQuestionEdit: PropTypes.func.isRequired,
-  saveQuestion: PropTypes.func.isRequired
+  saveQuestion: PropTypes.func.isRequired,
+  addOption: PropTypes.func.isRequired
 }
 
 export default EditQuestion
