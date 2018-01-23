@@ -10,13 +10,15 @@ function QuestionOptionsFields(props) {
   const type = props.questionInEdit.type
   const options = props.questionInEdit.options
   const addOption = props.addOption
+  const removeOption = props.removeOption
   if (type === 'radio' || type === 'checkbox') {  
-    const optList = options.map(function(option) {
+    const optList = options.map(function(option, index) {
       return (
-        <li key={option} className="list-group-item">
-          <div className="form-check">
+        <li key={index} className="list-group-item">
+          <div key= {option} className="form-check">
             <input className="form-check-input" type={type} disabled />
             <textarea type="text" className="question-option-field form-control" defaultValue={option} placeholder="Option description" />
+            <button type="button" className="btn btn-warning" onClick={() => removeOption(index)}>Remove option</button>
           </div>
         </li>
       )
@@ -42,6 +44,8 @@ function QuestionFormIfVisible(props) {
   const questionInEdit = props.questionInEdit
   const saveQuestion = props.saveQuestion
   const addOption = props.addOption
+  const removeOption = props.removeOption
+
   let questionText
   if (questionInEdit !== null) {
     return (
@@ -84,7 +88,7 @@ function QuestionFormIfVisible(props) {
                 />
               </div>
             </div>
-            <QuestionOptionsFields questionInEdit={questionInEdit} addOption={addOption} />
+            <QuestionOptionsFields questionInEdit={questionInEdit} addOption={addOption} removeOption={removeOption} />
             <div className="form-row">
               <div className="col">
                 <button type="submit" className="btn btn-primary">
@@ -102,10 +106,10 @@ function QuestionFormIfVisible(props) {
 
 }
 
-const EditQuestion = ({questionInEdit, cancelQuestionEdit, saveQuestion, addOption}) => (
+const EditQuestion = ({questionInEdit, cancelQuestionEdit, saveQuestion, addOption, removeOption}) => (
   <div id="overlay" className="overlay" style={{display: (questionInEdit !== null) ? 'block' : 'none'}} onClick={function() {overlayOff(); cancelQuestionEdit();}}>
     <div id="overlay-content" className="overlay-content container d-flex align-items-center">
-      <QuestionFormIfVisible questionInEdit={questionInEdit} saveQuestion={saveQuestion} addOption={addOption} />
+      <QuestionFormIfVisible questionInEdit={questionInEdit} saveQuestion={saveQuestion} addOption={addOption} removeOption={removeOption} />
     </div>
   </div>
 )
@@ -114,7 +118,8 @@ EditQuestion.propTypes = {
   questionInEdit: PropTypes.object,
   cancelQuestionEdit: PropTypes.func.isRequired,
   saveQuestion: PropTypes.func.isRequired,
-  addOption: PropTypes.func.isRequired
+  addOption: PropTypes.func.isRequired,
+  removeOption: PropTypes.func.isRequired
 }
 
 export default EditQuestion

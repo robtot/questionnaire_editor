@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { editQuestion, cancelQuestionEdit, addOptionQuestionInEdit } from '../actions'
+import { editQuestion, cancelQuestionEdit, addOptionQuestionInEdit, removeOptionQuestionInEdit } from '../actions'
 import EditQuestion from '../components/EditQuestion'
 
 const mapStateToProps = state => {
@@ -19,8 +19,12 @@ const mapDispatchToProps = dispatch => {
     },
     addOption: () => {
       dispatch(addOptionQuestionInEdit())
+    },
+
+    removeOption: (index) => {
+      dispatch(removeOptionQuestionInEdit(index))
     }
-    
+
   }
 
 }

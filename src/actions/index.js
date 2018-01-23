@@ -51,5 +51,13 @@ export const addOptionQuestionInEdit = () => {
   return {
     type: 'ADD_OPTION_QUESTION_IN_EDIT'
   }
-  
+
+}
+
+export const removeOptionQuestionInEdit = (index) => {
+  return {
+    type: 'REMOVE_OPTION_QUESTION_IN_EDIT',
+    index: index
+  }
+
 }
