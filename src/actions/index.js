@@ -23,3 +23,26 @@ export const sortQuestions = questionOrder => {
   }
 
 }
+
+export const editQuestion = question => {
+  return {
+    type: 'EDIT_QUESTION',
+    question: question
+  }
+
+}
+
+export const startQuestionEdit = question => {
+  return {
+    type: 'START_QUESTION_EDIT',
+    question: question
+  }
+
+}
+
+export const cancelQuestionEdit = () => {
+  return {
+    type: 'CANCEL_QUESTION_EDIT'
+  }
+  
+}

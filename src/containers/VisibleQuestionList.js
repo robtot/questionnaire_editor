@@ -1,14 +1,10 @@
 import { connect } from 'react-redux'
 import QuestionList from '../components/QuestionList'
-import { deleteQuestion, sortQuestions } from '../actions'
-
-const getVisibleQuestions = (questions) => {
-  return questions
-}
+import { deleteQuestion, sortQuestions, startQuestionEdit } from '../actions'
 
 const mapStateToProps = state => {
   return {
-    questions: getVisibleQuestions(state.questions)
+    questions: state.questions
   }
 }
 
@@ -20,13 +16,16 @@ const mapDispatchToProps = dispatch => {
     onQuestionSort: sortedList => {
       const mappedSortedList = sortedList.map(function(item) {
         return {
-          id: item.content.key,
+          id: parseInt(item.content.key, 10),
           rank: item.rank
         }
 
       })
       
       dispatch(sortQuestions(mappedSortedList))
+    },
+    onStartQuestionEdit: id => {
+      dispatch(startQuestionEdit(id))
     }
 
   }
