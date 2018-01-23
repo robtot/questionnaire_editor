@@ -1,0 +1,7 @@
+.question-card {
+	cursor: grab;
+}
+
+.question-card:active {
+	cursor: grabbing;
+}

@@ -18,7 +18,7 @@ let AddQuestion = ({ dispatch }) => {
       }}
     >
       <div className="form-row">
-        <div className="col-12">
+        <div className="col-12 col-md-8 col-lg-10">
           <textarea
             name="question"
             type="text"
@@ -29,9 +29,7 @@ let AddQuestion = ({ dispatch }) => {
             }}
           />
         </div>
-      </div>
-      <div className="form-row justify-content-center">
-        <div className="col-auto">
+        <div className="col-12 col-md-4 col-lg-2">
           <select
             name="question-type"
             className="custom-select"
@@ -43,10 +41,8 @@ let AddQuestion = ({ dispatch }) => {
             <option value="radio">Radio</option>
             <option value="checkbox">Checkbox</option>
           </select>
-        </div>
-        <div className="col-auto">
-          <button type="submit" className="btn btn-primary">
-            Add Question
+          <button type="submit" className="btn btn-primary btn-block">
+            Add question
           </button>
         </div>
       </div>

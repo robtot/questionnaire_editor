@@ -13,7 +13,7 @@ function getQuestionsElemList(questions, onQuestionDeleteClick, onStartQuestionE
 }
 
 const QuestionList = ({ questions, onQuestionDeleteClick, onQuestionSort, onStartQuestionEdit }) => (
-  <div className="row">
+  <div className="row my-4">
     <div className="col">
       <DragSortableList 
         items={getQuestionsElemList(questions, onQuestionDeleteClick, onStartQuestionEdit)}

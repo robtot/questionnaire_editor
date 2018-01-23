@@ -16,21 +16,30 @@ function QuestionOptionsFields(props) {
       return (
         <li key={index} className="list-group-item">
           <div key= {option} className="form-check">
-            <input className="form-check-input" type={type} disabled />
-            <textarea type="text" className="question-option-field form-control" defaultValue={option} placeholder="Option description" />
-            <button type="button" className="btn btn-warning" onClick={() => removeOption(index)}>Remove option</button>
+            <div className="row align-items-center">
+              <div className="col-12 col-md-10">
+                <input className="form-check-input" type={type} disabled />
+                <textarea type="text" className="question-option-field form-control" defaultValue={option} placeholder="Option description" />
+              </div>
+              <div className="col-12 col-md-2">
+                <button type="button" className="btn btn-warning float-right" onClick={() => removeOption(index)}>
+                  <i className="fa fa-times" aria-hidden="true"></i>
+                  <span> Remove</span>
+                </button>
+              </div>
+            </div>
           </div>
         </li>
       )
     })
 
     return (
-      <div>
-        <div className="form-row">
+      <div className="my-2">
+        <div className="form-row my-1">
           <ul className="list-group col">{optList}</ul>
         </div>
-        <div className="form-row">
-          <button type="button" className="btn btn-secondary" onClick={addOption}>Add option</button>
+        <div className="form-row my-1 justify-content-center">
+          <button type="button" className="btn btn-light" onClick={addOption}>Add option</button>
         </div>
       </div>
     )
@@ -75,7 +84,7 @@ function QuestionFormIfVisible(props) {
               </div>
             </div>
             <div className="form-row">
-              <div className="col-12">
+              <div className="col-12 my-2">
                 <textarea
                   name="question"
                   type="text"

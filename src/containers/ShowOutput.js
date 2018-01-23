@@ -15,6 +15,7 @@ let ShowOutput = ({questions}) => {
   return (
     <div className="row">
       <div className="col">
+        <h6>Output:</h6>
         <p>{JSON.stringify(questions)}</p>
       </div>
     </div>

@@ -8,6 +8,11 @@ const App = () => (
   <div>
     <VisibleEditQuestion />
     <div className="container">
+      <div className="row">
+        <div className="col text-center">
+          <h1>Questionnaire Editor</h1>
+        </div>
+      </div>
       <VisibleQuestionList />
       <AddQuestion />
       <ShowOutput />
